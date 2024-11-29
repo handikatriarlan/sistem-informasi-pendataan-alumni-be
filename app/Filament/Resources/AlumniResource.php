@@ -2,14 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\AlumniResource\Pages;
-use App\Models\Alumni;
 use Filament\Forms;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Alumni;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\AlumniResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AlumniResource extends Resource
@@ -33,6 +34,7 @@ class AlumniResource extends Resource
                     ->label('Name'),
                 Forms\Components\TextInput::make('password')
                     ->password()
+                    ->dehydrateStateUsing(fn($state) => Hash::make($state))
                     ->required()
                     ->label('Password'),
                 Forms\Components\TextInput::make('nisn')
