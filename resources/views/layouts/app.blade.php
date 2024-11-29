@@ -8,11 +8,6 @@
     {{-- <title>{{ $pageTitle }} | SMP Yayasan Perguruan Rahmat Islamiyah</title> --}}
     <title>SMP Yayasan Perguruan Rahmat Islamiyah</title>
     @vite('resources/css/app.css')
-    {{-- @vite('resources/js/main.js')
-    @vite('resources/js/alumni.js')
-    @vite('resources/js/contact.js')
-    @vite('resources/js/login.js')
-    @vite('resources/js/profile.js') --}}
 </head>
 
 <body class="bg-gray-50">
