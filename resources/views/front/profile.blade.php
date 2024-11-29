@@ -1,45 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Alumni Connect</title>
-    @vite('resources/css/app.css')
-    @vite('resources/js/profile.js')
-</head>
-
-<body class="bg-gray-50">
-    <header class="bg-gray-800 text-white sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <a href="/" class="flex items-center space-x-2">
-                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                    </svg>
-                    <span class="font-bold text-xl hidden sm:block">Alumni Connect</span>
-                </a>
-
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-6">
-                    <a href="/" class="hover:text-blue-400 transition">Home</a>
-                    <a href="/alumni.html" class="hover:text-blue-400 transition">Alumni</a>
-                    <a href="/contact.html" class="hover:text-blue-400 transition">Contact</a>
-                    <button id="logout-button" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition">Log
-                        out</button>
-                </nav>
-
-                <!-- Mobile Menu Button -->
-                <button id="menu-button" class="md:hidden p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </header>
-
+@section('content')
     <main class="container mx-auto px-4 py-8">
         <div class="max-w-4xl mx-auto">
             <div class="bg-white rounded-lg shadow-md overflow-hidden">
@@ -47,8 +8,7 @@
                 <div class="flex justify-center p-6">
                     <div class="relative">
                         <div class="w-40 h-40 rounded-full overflow-hidden">
-                            <img id="profile-image"
-                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400"
+                            <img id="profile-image" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400"
                                 alt="Profile" class="w-full h-full object-cover">
                         </div>
                         <label for="image-upload"
@@ -101,7 +61,8 @@
                     </div>
 
                     <div>
-                        <button type="submit" class="btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full">
+                        <button type="submit"
+                            class="btn bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg w-full">
                             Save Changes
                         </button>
                     </div>
@@ -109,6 +70,4 @@
             </div>
         </div>
     </main>
-</body>
-
-</html>
+@endsection
