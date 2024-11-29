@@ -2,20 +2,16 @@
     <div class="container mx-auto px-4">
         <div class="flex items-center justify-between h-16">
             <a href="/" class="flex items-center space-x-2">
-                <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                </svg>
-                <span class="font-bold text-xl hidden sm:block">Alumni Connect</span>
+                <span class="font-bold text-xl hidden sm:block">SMP Yayasan Perguruan Rahmat Islamiyah</span>
             </a>
 
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-6">
-                <a href="/" class="hover:text-blue-400 transition">Home</a>
-                <a href="/alumni.html" class="hover:text-blue-400 transition">Alumni</a>
-                <a href="/events.html" class="hover:text-blue-400 transition">Events</a>
-                <a href="/contact.html" class="hover:text-blue-400 transition">Contact</a>
-                <a href="/login.html" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">Log
+                <a href="/" class="hover:text-blue-400 transition mt-2">Home</a>
+                <a href="/alumni" class="hover:text-blue-400 transition mt-2">Alumni</a>
+                <a href="/event" class="hover:text-blue-400 transition mt-2">Events</a>
+                <a href="/contact" class="hover:text-blue-400 transition mt-2">Contact</a>
+                <a href="/login" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">Log
                     in</a>
             </nav>
 

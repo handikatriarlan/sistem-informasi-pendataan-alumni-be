@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="flex-1 flex items-center justify-center p-4">
+    <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
         <div class="w-full max-w-md">
-            <div class="bg-white rounded-lg shadow-md p-8">
+            <div class="bg-white rounded-lg shadow-md p-8 space-y-6">
                 <div class="text-center mb-8">
                     <h1 class="text-2xl font-bold">Welcome Back</h1>
                     <p class="text-gray-600 mt-2">Please sign in to your account</p>
@@ -11,15 +11,14 @@
 
                 <form id="login-form" class="space-y-6">
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email
-                            Address</label>
-                        <input type="email" id="email" name="email" required class="input"
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" name="email" required class="input w-full"
                             placeholder="john@example.com">
                     </div>
 
                     <div>
                         <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
-                        <input type="password" id="password" name="password" required class="input"
+                        <input type="password" id="password" name="password" required class="input w-full"
                             placeholder="••••••••">
                     </div>
 

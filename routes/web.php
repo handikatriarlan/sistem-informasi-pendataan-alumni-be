@@ -18,6 +18,10 @@ Route::get('/contact', function () {
     return view('front.contact');
 });
 
+Route::get('/event', function () {
+    return view('front.event');
+});
+
 Route::get('/profile', function () {
     return view('front.profile');
 });
