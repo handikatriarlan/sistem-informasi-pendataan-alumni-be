@@ -30,24 +30,21 @@
                                 Remember me
                             </label>
                         </div>
-                        <a href="/forgot-password.html" class="text-sm text-blue-600 hover:text-blue-500">
-                            Forgot password?
-                        </a>
                     </div>
 
                     <button type="submit" class="w-full btn btn-primary">
-                        Sign In
+                        Login
                     </button>
                 </form>
 
-                <div class="mt-6 text-center">
+                {{-- <div class="mt-6 text-center">
                     <p class="text-sm text-gray-600">
                         Don't have an account?
-                        <a href="/register.html" class="text-blue-600 hover:text-blue-500 font-medium">
-                            Sign up
+                        <a href="/register" class="text-blue-600 hover:text-blue-500 font-medium">
+                            Register
                         </a>
                     </p>
-                </div>
+                </div> --}}
             </div>
         </div>
     </main>
