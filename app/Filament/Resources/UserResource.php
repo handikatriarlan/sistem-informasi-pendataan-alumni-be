@@ -4,68 +4,68 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Alumni;
+use App\Models\User;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\AlumniResource\Pages;
+use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AlumniResource extends Resource
+class UserResource extends Resource
 {
-    protected static ?string $model = Alumni::class;
+    protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $navigationLabel = 'Alumni';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->unique(ignoreRecord: true)
-                    ->required()
-                    ->label('Email'),
                 Forms\Components\TextInput::make('name')
                     ->required()
-                    ->maxLength(255)
-                    ->label('Name'),
+                    ->label('Nama')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('email')
+                    ->required()
+                    ->email()
+                    ->label('Email')
+                    ->maxLength(255),
                 Forms\Components\TextInput::make('password')
                     ->password()
+                    ->required()
                     ->dehydrateStateUsing(fn($state) => Hash::make($state))
-                    ->required()
-                    ->label('Password'),
-                Forms\Components\TextInput::make('nisn')
-                    ->required()
-                    ->numeric()
-                    ->minLength(10)
-                    ->maxLength(10)
-                    ->label('NISN'),
+                    ->label('Password')
+                    ->minLength(8)
+                    ->maxLength(255),
             ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return static::getModel()::query()->where('role', 'alumni');
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('email')
-                    ->searchable()
-                    ->label('Email'),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable()
-                    ->label('Name'),
-                Tables\Columns\TextColumn::make('nisn')
                     ->sortable()
                     ->searchable()
-                    ->label('NISN'),
+                    ->label('Nama'),
+                Tables\Columns\TextColumn::make('email')
+                    ->sortable()
+                    ->searchable()
+                    ->label('Email'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->label('Created At'),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->label('Updated At'),
+                    ->sortable()
+                    ->searchable()
+                    ->label('Tanggal Dibuat')
+                    ->dateTime('d M Y H:i'),
             ])
             ->filters([
                 //
@@ -90,9 +90,9 @@ class AlumniResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAlumnis::route('/'),
-            'create' => Pages\CreateAlumni::route('/create'),
-            'edit' => Pages\EditAlumni::route('/{record}/edit'),
+            'index' => Pages\ListUsers::route('/'),
+            'create' => Pages\CreateUser::route('/create'),
+            'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }
 }
