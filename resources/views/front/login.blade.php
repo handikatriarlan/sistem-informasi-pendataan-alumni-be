@@ -9,7 +9,8 @@
                     <p class="text-gray-600 mt-2">Please sign in to your account</p>
                 </div>
 
-                <form id="login-form" class="space-y-6">
+                <form method="POST" action="{{ route('login') }}" id="login-form" class="space-y-6">
+                    @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
                         <input type="email" id="email" name="email" required class="input w-full"
