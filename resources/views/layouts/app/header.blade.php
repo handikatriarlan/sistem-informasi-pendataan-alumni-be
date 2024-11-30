@@ -11,23 +11,13 @@
                 <a href="/alumni" class="hover:text-blue-400 transition mt-2">Alumni</a>
                 <a href="/event" class="hover:text-blue-400 transition mt-2">Events</a>
                 <a href="/contact" class="hover:text-blue-400 transition mt-2">Contact</a>
-
-                @if (Auth::check())
-                    <a href="{{ route('logout') }}" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        Logout
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                        @csrf
-                    </form>
-                @else
-                    <a href="/login" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">
-                        Log in
-                    </a>
-                @endif
+                <a href="/login" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition">
+                    Log in
+                </a>
             </nav>
 
+
+            <!-- Mobile Menu Button -->
             <button id="menu-button" class="md:hidden p-2">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
