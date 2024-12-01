@@ -48,12 +48,12 @@ class EventResource extends Resource
                             ->placeholder('Pilih Tanggal Event')
                             ->required(),
 
-                        Forms\Components\TimePicker::make('waktu_event')  // Menggunakan TimePicker untuk waktu
+                        Forms\Components\TimePicker::make('waktu_event')
                             ->label('Waktu Event')
                             ->required()
                             ->format('H:i')
                             ->placeholder('Pilih Waktu Event')
-                            ->minuteIncrement(5),
+                            ->step(5),
 
                         Forms\Components\TextArea::make('keterangan')
                             ->label('Keterangan')
