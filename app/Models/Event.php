@@ -11,10 +11,12 @@ class Event extends Model
     ];
 
     protected $fillable = [
-        'name',
-        'description',
-        'location',
-        'date',
-        'image',
+        'nama_event',
+        'tempat_event',
+        'waktu_event',
+        'tgl_event',
+        'status',
+        'keterangan',
+        'gambar',
     ];
 }
