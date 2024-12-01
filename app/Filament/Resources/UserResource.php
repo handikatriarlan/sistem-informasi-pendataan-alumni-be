@@ -43,11 +43,47 @@ class UserResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->required()
-                    ->dehydrateStateUsing(fn($state) => Hash::make($state))
                     ->label('Password')
                     ->minLength(8)
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->dehydrateStateUsing(fn($state) => $state ? Hash::make($state) : null)
+                    ->dehydrated(fn($state) => filled($state)), // Hanya kirim ke server jika diisi
+                Forms\Components\FileUpload::make('foto')
+                    ->label('Foto')
+                    ->image()
+                    ->nullable(),
+                Forms\Components\DatePicker::make('tanggal_lahir')
+                    ->label('Tanggal Lahir')
+                    ->nullable(),
+                Forms\Components\TextInput::make('tempat_lahir')
+                    ->label('Tempat Lahir')
+                    ->nullable(),
+                Forms\Components\Select::make('jenis_kelamin')
+                    ->options([
+                        'L' => 'Laki-laki',
+                        'P' => 'Perempuan',
+                    ])
+                    ->label('Jenis Kelamin')
+                    ->nullable(),
+                Forms\Components\TextInput::make('nis')
+                    ->label('NIS')
+                    ->nullable(),
+                Forms\Components\TextInput::make('tahun_lulus')
+                    ->label('Tahun Lulus')
+                    ->nullable(),
+                Forms\Components\Textarea::make('alamat')
+                    ->label('Alamat')
+                    ->nullable(),
+                Forms\Components\TextInput::make('no_phone')
+                    ->label('No. Telepon')
+                    ->tel()
+                    ->nullable(),
+                Forms\Components\TextInput::make('pendidikan_lanjut')
+                    ->label('Pendidikan Lanjut')
+                    ->nullable(),
+                Forms\Components\TextInput::make('pekerjaan')
+                    ->label('Pekerjaan')
+                    ->nullable(),
             ]);
     }
 
@@ -68,29 +104,57 @@ class UserResource extends Resource
                     ->sortable()
                     ->searchable()
                     ->label('Email'),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('foto')
+                    ->label('Foto')
+                    ->formatStateUsing(fn($state) => $state ? '✅ Ada' : '❌ Tidak Ada'),
+                Tables\Columns\TextColumn::make('tanggal_lahir')
+                    ->label('Tanggal Lahir'),
+                Tables\Columns\TextColumn::make('tempat_lahir')
+                    ->label('Tempat Lahir'),
+                Tables\Columns\TextColumn::make('jenis_kelamin')
+                    ->label('Jenis Kelamin'),
+                Tables\Columns\TextColumn::make('nis')
+                    ->label('NIS'),
+                Tables\Columns\TextColumn::make('tahun_lulus')
                     ->sortable()
                     ->searchable()
+                    ->label('Tahun Lulus'),
+                Tables\Columns\TextColumn::make('alamat')
+                    ->label('Alamat'),
+                Tables\Columns\TextColumn::make('no_phone')
+                    ->label('No. Telepon'),
+                Tables\Columns\TextColumn::make('pendidikan_lanjut')
+                    ->label('Pendidikan Lanjut'),
+                Tables\Columns\TextColumn::make('pekerjaan')
+                    ->label('Pekerjaan'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
                     ->label('Tanggal Dibuat')
+                    ->dateTime('d M Y H:i'),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->sortable()
+                    ->label('Tanggal Diperbarui')
                     ->dateTime('d M Y H:i'),
             ])
             ->filters([
-                SelectFilter::make('status')
-                    ->options([
-                        'draft' => 'Draft',
-                        'reviewing' => 'Reviewing',
-                        'published' => 'Published',
-                    ]),
+                SelectFilter::make('tahun_lulus')
+                    ->label('Tahun Lulus')
+                    ->options(
+                        static::getModel()::query()
+                            ->distinct()
+                            ->pluck('tahun_lulus', 'tahun_lulus')
+                            ->filter()
+                            ->toArray()
+                    ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
+
 
     public static function getRelations(): array
     {
