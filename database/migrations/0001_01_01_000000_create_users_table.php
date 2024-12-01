@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('tanggal_lahir')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
-            $table->string('nis')->nullable();
+            $table->string('nis')->unique()->nullable();
             $table->string('tahun_lulus')->nullable();
             $table->string('alamat')->nullable();
             $table->string('no_phone')->nullable();
