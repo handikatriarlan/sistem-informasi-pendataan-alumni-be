@@ -14,6 +14,8 @@ use App\Filament\Resources\UserResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Filament\Tables\Actions\Action;
 
 class UserResource extends Resource
 {
@@ -146,6 +148,24 @@ class UserResource extends Resource
                             ->filter()
                             ->toArray()
                     ),
+            ])
+            ->headerActions([
+                Action::make('cetak_semua_pdf')
+                    ->label('Cetak PDF')
+                    ->color('success')
+                    ->icon('heroicon-o-document')
+                    ->action(function () {
+                        $data = static::getModel()::query()
+                            ->filter(request()->only('filter'))
+                            ->get();
+
+                        $pdf = PDF::loadView('pdf.alumni', ['records' => $data]);
+
+                        return response()->streamDownload(
+                            fn() => print($pdf->output()),
+                            'data-alumni.pdf'
+                        );
+                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
